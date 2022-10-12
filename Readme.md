@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм (простой)»
 
 * Студент: [Алина Хайруллина](https://up.htmlacademy.ru/javascript/27/user/1982269).
-* Наставник: [Artur Litovko](https://github.com/baileys-li).
+* Наставник: `Неизвестно`.
 
 ---
 
