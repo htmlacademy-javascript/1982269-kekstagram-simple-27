@@ -30,23 +30,33 @@ const DESCRIPTION = [
   'Живите во всех тех моментах, которые вы не можете выразить словами.'
 ];
 
-function getRandomArrayItem (elements) {
+/**
+ * @template Type
+ * @param {Type[]} elements
+ * @returns {Type} Возвращает случайный элемент из массива
+ */
+function getRandomArrayItem(elements) {
   return elements[getRandomPositiveInteger(0, elements.length - 1)];
 }
 
-//Функция для создания массива из 25 сгенерированных объектов
+/**
+ * Вспомогательная функция-колбэк для `Array.from`
+ * @param {undefined} _ не используется
+ * @param {number} index Начинается с нуля
+ */
 function createPhoto (_, index) {
   const id = index + 1;
 
   return {
     id: id,
     url: `photos/${id}.jpg`,
-    description: getRandomArrayItem (DESCRIPTION),
-    likes: getRandomPositiveInteger (15, 200),
-    comments: getRandomPositiveInteger (0, 200)
+    description: getRandomArrayItem(DESCRIPTION),
+    likes: getRandomPositiveInteger(15, 200),
+    comments: getRandomPositiveInteger(0, 200)
   };
 }
 
 const arrayPhotos = Array.from({length: 25}, createPhoto);
+
 console.log(arrayPhotos);
 checkStringLength ('', 140);
