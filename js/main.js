@@ -1,4 +1,2 @@
-import {arrayPhotos} from './mock-data.js';
+import './thumbnails.js';
 
-// eslint-disable-next-line no-console
-console.log(arrayPhotos);
