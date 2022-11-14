@@ -17,4 +17,9 @@ function checkStringLength (string, length) {
   return false;
 }
 
-export {getRandomPositiveInteger, checkStringLength};
+// Функция для проверки нажатой клавиши ESС
+function isEscapeKey(evt) {
+  return (evt.key === 'Escape');
+}
+
+export {getRandomPositiveInteger, checkStringLength, isEscapeKey};
