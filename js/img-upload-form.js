@@ -1,14 +1,16 @@
 import {isEscapeKey} from './utils.js';
+import {changeScalePicture, imagePreview} from './img-scale.js';
+import {effectsList, toChangeEffects} from './img-effects.js';
 
-const body = document.querySelector('body');
-const uploadPhoto = body.querySelector('#upload-file');
-const imageEditor = body.querySelector('.img-upload__overlay');
-const buttonUploadCancel = imageEditor.querySelector('#upload-cancel');
+const {body} = document;
+const form = body.querySelector('.img-upload__form')
+const uploadPhoto = form.querySelector('#upload-file');
+const imageEditor = form.querySelector('.img-upload__overlay');
 
 function onPopupEscKeydown(evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeImageEditor();
+    form.reset();
   }
 }
 
@@ -17,13 +19,17 @@ function openImageEditor() {
   imageEditor.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onPopupEscKeydown);
+  changeScalePicture();
+  effectsList.addEventListener('change', toChangeEffects);
 }
 
-function closeImageEditor() {
+function onResetForm() {
   imageEditor.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onPopupEscKeydown);
-  uploadPhoto.value = '';
+  effectsList.removeEventListener('change', toChangeEffects);
+  imagePreview.style.transform = 'scale(1)';
+  imagePreview.classList.remove(imagePreview.className);
 }
 
 uploadPhoto.addEventListener('change', (evt) => {
@@ -31,7 +37,6 @@ uploadPhoto.addEventListener('change', (evt) => {
   openImageEditor();
 });
 
-buttonUploadCancel.addEventListener('click', () => {
-  closeImageEditor();
-});
+form.addEventListener('reset', onResetForm);
+
 
