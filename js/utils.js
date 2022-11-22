@@ -1,33 +1,4 @@
 /**
- * Функция, возвращающая случайное целое число из переданного диапазона включительно
- * @param {number} a Число
- * @param {number} b Число
- * @returns {number} Случайное число в заданном диапазоне включительно
- */
-function getRandomPositiveInteger (a, b) {
-  if (a < 0 || b < 0) {
-    return NaN;
-  }
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-}
-
-/**
- * Функция для проверки максимальной длины строки
- * @param {string} string Входная строка
- * @param {number} length Максимальная длина
- * @returns {boolean} Подходит ли по длине
- */
-function checkStringLength (string, length) {
-  if (string.length <= length) {
-    return true;
-  }
-  return false;
-}
-
-/**
  * Функция для проверки нажата ли клавиша ESС
  */
 function isEscapeKey(evt) {
@@ -35,17 +6,28 @@ function isEscapeKey(evt) {
 }
 
 /**
- * Функция, удаляющая последний знак у строки
+ * Функция для отрисовки блока уведомления с ошибкой
+ * @param {string} message Текст ошибки
  */
-function removeLastSymbol(string) {
-  return string.slice(0, -1);
+function showAlert(message) {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = '100';
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = '0';
+  alertContainer.style.top = '0';
+  alertContainer.style.right = '0';
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'red';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, 4000);
 }
 
-/**
- * Функция, превращающая строку в число
- */
-function toNumber(string) {
-  return Number(string);
-}
-
-export {getRandomPositiveInteger, checkStringLength, isEscapeKey, removeLastSymbol, toNumber};
+export {isEscapeKey, showAlert};

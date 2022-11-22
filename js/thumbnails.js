@@ -1,5 +1,3 @@
-import {arrayPhotos} from './mock-data.js';
-
 const template = document.querySelector('#picture').content;
 const templatePicture = template.querySelector('.picture');
 
@@ -20,11 +18,11 @@ function markupThumbnail(photo) {
   return picture;
 }
 
-function renderThumbnails(photos) {
+export function renderThumbnails(photos) {
   for (const photo of photos) {
     fragment.appendChild(markupThumbnail(photo));
   }
   containerPictures.appendChild(fragment);
 }
 
-renderThumbnails(arrayPhotos);
+
