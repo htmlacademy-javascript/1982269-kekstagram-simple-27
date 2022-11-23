@@ -4,7 +4,7 @@ const templatePicture = template.querySelector('.picture');
 const containerPictures = document.querySelector('.pictures');
 const fragment = document.createDocumentFragment();
 
-function markupThumbnail(photo) {
+const markupThumbnail = (photo) => {
   const picture = templatePicture.cloneNode(true);
 
   const img = picture.querySelector('.picture__img');
@@ -16,13 +16,13 @@ function markupThumbnail(photo) {
   comments.textContent = photo.comments;
 
   return picture;
-}
+};
 
-export function renderThumbnails(photos) {
+const renderThumbnails = (photos) => {
   for (const photo of photos) {
     fragment.appendChild(markupThumbnail(photo));
   }
   containerPictures.appendChild(fragment);
-}
+};
 
-
+export {renderThumbnails};

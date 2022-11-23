@@ -1,14 +1,16 @@
-import {renderThumbnails} from './thumbnails.js';
-import { showAlert } from './utils.js';
+import { renderThumbnails} from './thumbnails.js';
+import { showNotificationError } from './notifications.js';
+
+const SERVER = 'https://27.javascript.pages.academy/kekstagram-simple';
 
 /**
  * Функция для получения данных с сервера
  */
 export function getData() {
-  fetch('https://27.javascript.pages.academy/kekstagram-simple/data')
+  fetch(`${SERVER}/data`)
     .then((response) => response.json())
     .then((posts) => renderThumbnails(posts))
-    .catch(() => showAlert('Что-то пошло не так. Попробуйте обновить страницу'));
+    .catch(() => showNotificationError('Ошибка соединения'));
 }
 
 /**
@@ -16,7 +18,7 @@ export function getData() {
  */
 export function sendData(onSuccess, onError, body) {
   fetch(
-    'https://27.javascript.pages.academy/kekstagram-simple',
+    SERVER,
     {
       method: 'POST',
       body,

@@ -13,9 +13,8 @@ const effects = [
 
 /**
  * Функция для наложения эффекта на фотографию
- * @param {*} evt
  */
-function toChangeEffects(evt) {
+const changeEffect = (evt) => {
   effects.forEach((effect) => {
     if (evt.target.checked && evt.target.id === effect.id) {
       imagePreview.classList.add(effect.class);
@@ -24,7 +23,7 @@ function toChangeEffects(evt) {
       imagePreview.classList.remove(effect.class);
     }
   });
-}
+};
 
-export {effectsList, toChangeEffects};
+export {effectsList, changeEffect};
 
