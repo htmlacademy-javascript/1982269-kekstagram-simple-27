@@ -14,7 +14,7 @@ const effects = [
 /**
  * Функция для наложения эффекта на фотографию
  */
-const changeEffect = (evt) => {
+const onEffectChange = (evt) => {
   effects.forEach((effect) => {
     if (evt.target.checked && evt.target.id === effect.id) {
       imagePreview.classList.add(effect.class);
@@ -25,5 +25,5 @@ const changeEffect = (evt) => {
   });
 };
 
-export {effectsList, changeEffect};
+export {effectsList, onEffectChange};
 

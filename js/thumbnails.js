@@ -19,9 +19,9 @@ const markupThumbnail = (photo) => {
 };
 
 const renderThumbnails = (photos) => {
-  for (const photo of photos) {
-    fragment.appendChild(markupThumbnail(photo));
-  }
+  photos.forEach((photo) =>
+    fragment.appendChild(markupThumbnail(photo)));
+
   containerPictures.appendChild(fragment);
 };
 

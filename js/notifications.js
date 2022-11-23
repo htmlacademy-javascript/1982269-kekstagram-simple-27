@@ -4,7 +4,7 @@ const templateError = document.querySelector('#error').content.querySelector('.e
 const templateSuccess = document.querySelector('#success').content.querySelector('.success');
 
 //Открытие попапа с сообщением об успешной отправке данных или об ошибке
-function showAlert(template, message) {
+const showAlert = (template, message) => {
   const alertPopup = template.cloneNode(true);
   const button = alertPopup.querySelector('button');
   const messageError = alertPopup.querySelector('.error__title');
@@ -17,12 +17,12 @@ function showAlert(template, message) {
   document.addEventListener('click', onAlertClick);
 
   // Закрытие модального окна с уведомлением
-  function closeAlert() {
+  const closeAlert = () => {
     alertPopup.remove();
     document.removeEventListener('keydown', onPopupEscKeydown);
     document.removeEventListener('click', onAlertClick);
 
-  }
+  };
 
   // Закрытие попапа по клавише ESC
   function onPopupEscKeydown(evt) {
@@ -39,7 +39,7 @@ function showAlert(template, message) {
   }
 
   document.body.appendChild(alertPopup);
-}
+};
 
 //Открытие попапа с сообщением об успешной отправке данных
 const showNotificationSuccess = () => showAlert(templateSuccess);
