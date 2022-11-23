@@ -1,4 +1,4 @@
-import { imagePreview } from './img-scale.js';
+import { imagePreview } from './for-img.js';
 
 const effectsList = document.querySelector('.effects__list');
 
@@ -11,7 +11,10 @@ const effects = [
   { class: 'effects__preview--heat', id: 'effect-heat'}
 ];
 
-function toChangeEffects(evt) {
+/**
+ * Функция для наложения эффекта на фотографию
+ */
+const changeEffect = (evt) => {
   effects.forEach((effect) => {
     if (evt.target.checked && evt.target.id === effect.id) {
       imagePreview.classList.add(effect.class);
@@ -20,6 +23,7 @@ function toChangeEffects(evt) {
       imagePreview.classList.remove(effect.class);
     }
   });
-}
+};
 
-export {effectsList, toChangeEffects}
+export {effectsList, changeEffect};
+
