@@ -6,17 +6,17 @@ const SERVER = 'https://27.javascript.pages.academy/kekstagram-simple';
 /**
  * Функция для получения данных с сервера
  */
-export function getData() {
+const getData = () => {
   fetch(`${SERVER}/data`)
     .then((response) => response.json())
     .then((posts) => renderThumbnails(posts))
     .catch(() => showNotificationError('Ошибка соединения'));
-}
+};
 
 /**
  * Функция для отправки фото на сервер
  */
-export function sendData(onSuccess, onError, body) {
+const sendData = (onSuccess, onError, body) => {
   fetch(
     SERVER,
     {
@@ -34,4 +34,6 @@ export function sendData(onSuccess, onError, body) {
     .catch(() => {
       onError();
     });
-}
+};
+
+export {getData, sendData};

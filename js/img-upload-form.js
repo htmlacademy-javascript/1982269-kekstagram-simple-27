@@ -1,6 +1,6 @@
 import {isEscapeKey} from './utils.js';
 import {changeScalePicture} from './img-scale.js';
-import {effectsList, changeEffect} from './img-effects.js';
+import {effectsList, onEffectChange} from './img-effects.js';
 import {resetImage} from './for-img.js';
 import {sendData} from './api.js';
 import {showNotificationSuccess, showNotificationError} from './notifications.js';
@@ -31,8 +31,8 @@ const openImageEditor = () => {
   imageEditor.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onPopupEscKeydown);
-  effectsList.addEventListener('change', changeEffect);
-  form.addEventListener('submit', toUploadPhoto);
+  effectsList.addEventListener('change', onEffectChange);
+  form.addEventListener('submit', onPhotoUpload);
   changeScalePicture();
 };
 
@@ -41,8 +41,8 @@ const onResetForm = () => {
   imageEditor.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onPopupEscKeydown);
-  effectsList.removeEventListener('change', changeEffect);
-  form.removeEventListener('submit', toUploadPhoto);
+  effectsList.removeEventListener('change', onEffectChange);
+  form.removeEventListener('submit', onPhotoUpload);
   resetImage();
   form.reset();
 };
@@ -58,7 +58,7 @@ const unblockSubmitButton = () => {
 };
 
 // Функция для отправки фото на сервер
-function toUploadPhoto (evt) {
+function onPhotoUpload (evt) {
   evt.preventDefault();
   blockSubmitButton();
   sendData(() => {
